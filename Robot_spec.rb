@@ -1,5 +1,7 @@
 require "rspec"
+require "./Position"
 require "./Robot"
+require "./Table"
 
 describe "Robot" do
 
