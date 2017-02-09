@@ -1,10 +1,25 @@
 # external
 
+# represents a table top that a robot navigates
+
+class Table
+
+  def initialize(width, height)
+    @width = width
+    @height = height
+  end
+
+  def is_valid(position)
+    position.x < @width && position.y < @height && position.x >= 0 && position.y >= 0
+  end
+
+end
+
 # represents a toy robot
 
 class Robot
 
-  def self.place(x, y, orientation)
+  def self.place(table, x, y, orientation, robot)
     case orientation
     when "north"
       position = North.new(x, y)
@@ -18,11 +33,15 @@ class Robot
       raise "invalid orientation"
     end
     
-    PlacedRobot.new(position)
+    table.is_valid(position) ? PlacedRobot.new(table, position) : robot
+  end
+
+  def initialize(table)
+    @table = table
   end
   
   def place(x, y, orientation)
-    Robot.place(x, y, orientation)
+    Robot.place(@table, x, y, orientation, self)
   end
 
   def move
@@ -49,24 +68,25 @@ end
 
 class PlacedRobot
 
-  def initialize(position)
+  def initialize(table, position)
+    @table = table
     @position = position
   end
   
   def place(x, y, orientation)
-    Robot.place(x, y, orientation)
+    Robot.place(@table, x, y, orientation, self)
   end
 
   def move
-    PlacedRobot.new(@position.move)
+    @table.is_valid(@position.move) ? PlacedRobot.new(@table, @position.move) : self
   end
 
   def left
-    PlacedRobot.new(@position.left)
+    PlacedRobot.new(@table, @position.left)
   end
   
   def right
-    PlacedRobot.new(@position.right)
+    PlacedRobot.new(@table, @position.right)
   end
   
   def report
@@ -77,6 +97,7 @@ end
 
 class North
 
+  attr_reader :x, :y
   def initialize(x, y)
     @x = x
     @y = y
@@ -102,6 +123,7 @@ end
 
 class East
 
+  attr_reader :x, :y
   def initialize(x, y)
     @x = x
     @y = y
@@ -127,6 +149,7 @@ end
 
 class South
 
+  attr_reader :x, :y
   def initialize(x, y)
     @x = x
     @y = y
@@ -152,6 +175,7 @@ end
 
 class West
 
+  attr_reader :x, :y
   def initialize(x, y)
     @x = x
     @y = y
@@ -176,13 +200,14 @@ class West
 end
 
 if __FILE__ == $0
-  robot = Robot.new
+  table = Table.new(5, 5)
+  robot = Robot.new(table)
   looping = true
   while looping
-    input = gets.chomp
+    input = gets.chomp.strip
     if input.downcase == "quit"
       looping = false
-    elsif input.downcase.start_with? "place " and input.count(",") == 2
+    elsif input.downcase =~ /^place [0-9]+,[0-9]+,(north|east|south|west)$/
       parameters = input.downcase.partition("place ").last.split(",")
       robot = robot.place(parameters[0].strip.to_i, parameters[1].strip.to_i, parameters[2].strip)
     elsif input.downcase == "move"
