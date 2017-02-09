@@ -6,7 +6,7 @@ require "./Table"
 describe "Robot" do
 
   before(:all) do
-    @table = Table.new(5, 5)
+    @table = Table.new
   end
 
   describe "that is not placed" do

@@ -2,7 +2,7 @@
 
 class Table
 
-  def initialize(width, height)
+  def initialize(width = 5, height = 5)
     @width = width
     @height = height
   end

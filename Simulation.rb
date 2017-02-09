@@ -7,7 +7,7 @@ require "./Table"
 class Simulation
 
   def self.run
-    @robot = Robot.new(Table.new(5, 5))
+    @robot = Robot.new(Table.new)
     
     loop do
       input = gets
