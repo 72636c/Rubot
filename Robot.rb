@@ -40,7 +40,7 @@ class Robot
   end
 
   def report
-    "not placed"
+    "UNPLACED"
   end
 
 end

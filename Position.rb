@@ -21,7 +21,7 @@ class North
   end
 
   def report
-    "at (#{@x}, #{@y}) facing north"
+    "#{@x},#{@y},NORTH"
   end
 
 end
@@ -47,7 +47,7 @@ class East
   end
 
   def report
-    "at (#{@x}, #{@y}) facing east"
+    "#{@x},#{@y},EAST"
   end
 
 end
@@ -73,7 +73,7 @@ class South
   end
 
   def report
-    "at (#{@x}, #{@y}) facing south"
+    "#{@x},#{@y},SOUTH"
   end
 
 end
@@ -99,7 +99,7 @@ class West
   end
 
   def report
-    "at (#{@x}, #{@y}) facing west"
+    "#{@x},#{@y},WEST"
   end
 
 end
