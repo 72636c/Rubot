@@ -1,4 +1,4 @@
-# represents a table top that a robot moves across
+# represents a tabletop that a robot moves across
 
 class Table
 

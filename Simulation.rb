@@ -2,7 +2,7 @@ require "./Position"
 require "./Robot"
 require "./Table"
 
-# represents a program that receives command line input and simulates a robot moving across a table top
+# represents a program that receives command line input and simulates a robot moving across a tabletop
 
 class Simulation
 

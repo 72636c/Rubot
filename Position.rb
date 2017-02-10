@@ -1,4 +1,4 @@
-# represents a possible position for a robot on a table top
+# represents a possible position for a robot on a tabletop
 
 class North
 
