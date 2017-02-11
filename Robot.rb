@@ -4,13 +4,13 @@ class Robot
 
   def self.place(table, x, y, orientation, robot)
     case orientation
-    when "NORTH"
+    when :north
       position = North.new(x, y)
-    when "EAST"
+    when :east
       position = East.new(x, y)
-    when "SOUTH"
+    when :south
       position = South.new(x, y)
-    when "WEST"
+    when :west
       position = West.new(x, y)
     else
       raise "invalid orientation"

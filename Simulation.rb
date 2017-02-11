@@ -12,16 +12,16 @@ class Simulation
     loop do
       input = gets
       break unless input
-      Simulation.process(input)
+      Simulation.parse(input)
     end
   end
   
-  def self.process(input)
+  def self.parse(input)
     input = input.strip.upcase
     
-    if input =~ /^PLACE [0-9]+,[0-9]+,(NORTH|EAST|SOUTH|WEST)$/
+    if input =~ /^PLACE (\+|-)?[0-9]+,(\+|-)?[0-9]+,(NORTH|EAST|SOUTH|WEST)$/
       parameters = input.partition("PLACE ").last.split(",")
-      @robot = @robot.place(parameters[0].strip.to_i, parameters[1].strip.to_i, parameters[2].strip)
+      @robot = @robot.place(parameters[0].to_i, parameters[1].to_i, parameters[2].downcase.to_sym)
     elsif input == "MOVE"
       @robot = @robot.move
     elsif input == "LEFT"
