@@ -1,5 +1,7 @@
 # Rubot
 
+"Simulation" of a robot on a tabletop.
+
 ## Setup
 
 * [Ruby documentation](https://www.ruby-lang.org/en/documentation/)
